@@ -1,0 +1,14 @@
+[Unit]
+Description=Service for u-os-mini-mariadb
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=root
+ExecStart=docker compose -f /opt/mini-mariadb/docker-compose-prod.yml up -d
+ExecStop=docker compose -f /opt/mini-mariadb/docker-compose-prod.yml stop
+
+[Install]
+WantedBy=multi-user.target

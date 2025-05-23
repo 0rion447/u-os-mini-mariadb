@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  db:
+    image: u-os-mini-mariadb
+    container_name: u-os-mini-mariadb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    restart: on-failure:5
+    environment:
+      - MYSQL_ROOT_HOST=%  
+    deploy:
+      resources:
+        limits:
+          memory: 400M
+
+  adminer:
+    image: adminer:4.8.1-standalone
+    container_name: u-os-mini-mariadb-adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: on-failure:5
+    deploy:
+      resources:
+        limits:
+          memory: 50M
+
+volumes:
+  mariadb-data:

@@ -1,0 +1,35 @@
+[mysqld]
+# Basic settings
+user = mysql
+pid-file = /run/mysqld/mysqld.pid
+socket = /run/mysqld/mysqld.sock
+port = 3306
+datadir = /var/lib/mysql
+bind-address = 0.0.0.0
+
+# Minimize memory usage
+max_connections = 10
+max_allowed_packet = 1M
+thread_stack = 128K
+thread_cache_size = 2
+table_open_cache = 4
+key_buffer_size = 8M
+sort_buffer_size = 64K
+join_buffer_size = 64K
+read_buffer_size = 256K
+read_rnd_buffer_size = 256K
+net_buffer_length = 2K
+ft_min_word_len = 4
+
+# InnoDB specific
+innodb_buffer_pool_size = 64M
+innodb_log_buffer_size = 1M
+innodb_file_per_table = 1
+innodb_open_files = 32
+innodb_io_capacity = 100
+innodb_flush_method = O_DIRECT
+
+# Disable features
+skip-name-resolve
+skip-host-cache
+skip-networking = 0
